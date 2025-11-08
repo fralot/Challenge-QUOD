@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backendantifraude
+    ports:
+      - "8080:8080"
+    depends_on:
+      - face-verification
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+      spring.data.mongodb.uri: mongodb+srv://JoaoVitorS:YW2meWMpMZipHC7a@cluster0.zjh40.mongodb.net/QuodAntifraude?retryWrites=true&w=majority
+
+
+  face-verification:
+    build:
+      context: ./face-verification-service
+    ports:
+      - "5001:5001"
